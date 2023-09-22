@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "573536407530",
+    "project_id": "uplo-c9cea",
+    "storage_bucket": "uplo-c9cea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573536407530:android:e40dd123372b8eedd3ac93",
+        "android_client_info": {
+          "package_name": "br.senai.jandira.sp.upload_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC8Dyqe_NMxxCPmc7_52RaIzEj4vfzk-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
