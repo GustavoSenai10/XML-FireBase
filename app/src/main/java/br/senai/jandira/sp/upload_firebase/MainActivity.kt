@@ -1,5 +1,6 @@
 package br.senai.jandira.sp.upload_firebase
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import br.senai.jandira.sp.upload_firebase.databinding.ActivityMainBinding
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //Referencia para acesso e manipulação do cloud FireStore
-    private lateinit var firebaseStorage: FirebaseStorage
+    private lateinit var firebaseFirestore: FirebaseFirestore
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +42,11 @@ class MainActivity : AppCompatActivity() {
     //Inicialização dos Atributos do FireBase
     private fun initVars(){
         storeRef = FirebaseStorage.getInstance().reference.child("imagens")
-        firebaseStorage =FirebaseStorage.getInstance()
+        firebaseFirestore = FirebaseFirestore.getInstance()
     }
 
+
+    //Lançador de recursos externos da aplicação (Galeria de Imagens)
     private val resultLaucher = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ){
@@ -57,6 +61,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.uploadBtn.setOnClickListener {
             uploadImage()
+        }
+
+        binding.showAllBtn.setOnClickListener {
+            startActivity(Intent(this, imagesFeed::class.java))
         }
     }
 
@@ -114,7 +122,7 @@ class MainActivity : AppCompatActivity() {
 
                             }
                             binding.progressBar.visibility = View.GONE
-                            binding.imageView.setImageResource(R.drawable.vector)
+                            binding.imageView.setImageResource(R.drawable.baseline_arrow_back_24)
 
                         }
                     }
@@ -129,10 +137,12 @@ class MainActivity : AppCompatActivity() {
                 binding.progressBar.visibility = View.GONE
 
                 //TROCA A IMAGEM PARA A IMAGEM PADRÃO
-                binding.imageView.setImageResource(R.drawable.vector)
+                binding.imageView.setImageResource(R.drawable.baseline_arrow_back_24)
 
             }
 
+         }
+        ////Uplaod V2 - Fim
     }
 
 }
